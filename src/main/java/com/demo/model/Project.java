@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  */
 @SuppressWarnings("serial")
 @Entity
-@Table(name = "PROJECT", schema = "DB_OFFICE_MANAGER")
+@Table(name = "PROJECT", schema = "c##nguyenquan")
 public class Project implements java.io.Serializable {
 
 	private int idProject;

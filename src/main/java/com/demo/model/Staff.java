@@ -19,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  */
 @SuppressWarnings("serial")
 @Entity
-@Table(name = "STAFF", schema = "DB_OFFICE_MANAGER")
+@Table(name = "STAFF", schema = "c##nguyenquan")
 public class Staff implements java.io.Serializable {
 
 	private int idStaff;

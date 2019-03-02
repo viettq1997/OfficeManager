@@ -14,7 +14,7 @@ import javax.persistence.Table;
  */
 @SuppressWarnings("serial")
 @Entity
-@Table(name = "COMMENTBUGS", schema = "DB_OFFICE_MANAGER")
+@Table(name = "COMMENTBUGS", schema = "c##nguyenquan")
 public class Commentbugs implements java.io.Serializable {
 
 	private int idCm;

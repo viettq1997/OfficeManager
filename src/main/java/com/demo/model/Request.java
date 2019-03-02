@@ -14,7 +14,7 @@ import javax.persistence.Table;
  */
 @SuppressWarnings("serial")
 @Entity
-@Table(name = "REQUEST", schema = "DB_OFFICE_MANAGER")
+@Table(name = "REQUEST", schema = "c##nguyenquan")
 public class Request implements java.io.Serializable {
 
 	private int idRequest;

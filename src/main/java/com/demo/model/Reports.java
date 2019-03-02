@@ -14,7 +14,7 @@ import javax.persistence.Table;
  */
 @SuppressWarnings("serial")
 @Entity
-@Table(name = "REPORTS", schema = "DB_OFFICE_MANAGER")
+@Table(name = "REPORTS", schema = "c##nguyenquan")
 public class Reports implements java.io.Serializable {
 
 	private int idReport;

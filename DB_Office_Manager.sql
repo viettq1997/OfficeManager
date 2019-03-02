@@ -28,6 +28,7 @@ CREATE TABLE staff (
     PRIMARY KEY ( id_staff ) ENABLE,
     FOREIGN KEY ( id_project )
         REFERENCES project ( id_project )
+        on delete CASCADE
     ENABLE
 );
 
@@ -45,9 +46,11 @@ CREATE TABLE timesheet (
     PRIMARY KEY ( id_ts ) ENABLE,
     FOREIGN KEY ( id_project )
         REFERENCES project ( id_project )
+        on delete CASCADE
     ENABLE,
     FOREIGN KEY ( id_staff )
         REFERENCES staff ( id_staff )
+        on delete CASCADE
     ENABLE
 );
 
@@ -63,6 +66,7 @@ CREATE TABLE news (
     PRIMARY KEY ( id_new ) ENABLE,
     FOREIGN KEY ( id_staff )
         REFERENCES staff ( id_staff )
+        on delete CASCADE
     ENABLE
 );
 
@@ -75,6 +79,7 @@ CREATE TABLE bugs (
     PRIMARY KEY ( id_bugs ) ENABLE,
     FOREIGN KEY ( id_staff )
         REFERENCES staff ( id_staff )
+        on delete CASCADE
     ENABLE
 );
 
@@ -88,9 +93,11 @@ CREATE TABLE commentbugs (
     PRIMARY KEY ( id_cm ) ENABLE,
     FOREIGN KEY ( id_bugs )
         REFERENCES bugs ( id_bugs )
+        on delete CASCADE
     ENABLE,
     FOREIGN KEY ( id_staff )
         REFERENCES staff ( id_staff )
+        on delete CASCADE
     ENABLE
 );
 
@@ -104,6 +111,8 @@ CREATE TABLE request (
     PRIMARY KEY ( id_request ) ENABLE,
     FOREIGN KEY ( id_staff )
         REFERENCES staff ( id_staff )
+        on delete CASCADE
+        enable
 );
 
 CREATE TABLE reports (
@@ -118,9 +127,11 @@ CREATE TABLE reports (
     PRIMARY KEY ( id_report ) ENABLE,
     FOREIGN KEY ( id_project )
         REFERENCES project ( id_project )
+        on delete CASCADE
     ENABLE,
     FOREIGN KEY ( id_ts )
         REFERENCES timesheet ( id_ts )
+        on delete CASCADE
     ENABLE
 );
 
@@ -134,6 +145,7 @@ CREATE TABLE slide (
     PRIMARY KEY ( id_slide ) ENABLE,
     FOREIGN KEY ( id_staff )
         REFERENCES staff ( id_staff )
+        on delete CASCADE
     ENABLE
 );
 --drop table slide;
