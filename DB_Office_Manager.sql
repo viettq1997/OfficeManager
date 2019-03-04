@@ -1,15 +1,11 @@
 CREATE TABLE project (
-    id_project   NUMBER
-        GENERATED ALWAYS AS IDENTITY INCREMENT BY 1 START WITH 1
-    NOT NULL,
+    id_project   NUMBER NOT NULL,
     name         VARCHAR2(225) NOT NULL,
     PRIMARY KEY ( id_project ) ENABLE
 );
 
 CREATE TABLE staff (
-    id_staff     NUMBER
-        GENERATED ALWAYS AS IDENTITY INCREMENT BY 1 START WITH 1
-    NOT NULL,
+    id_staff     NUMBER NOT NULL,
     username     VARCHAR(225) NOT NULL,
     roless       NUMBER NOT NULL,
     status       NUMBER(1, 0),
@@ -28,14 +24,12 @@ CREATE TABLE staff (
     PRIMARY KEY ( id_staff ) ENABLE,
     FOREIGN KEY ( id_project )
         REFERENCES project ( id_project )
-        on delete CASCADE
+            ON DELETE CASCADE
     ENABLE
 );
 
 CREATE TABLE timesheet (
-    id_ts        NUMBER
-        GENERATED ALWAYS AS IDENTITY INCREMENT BY 1 START WITH 1
-    NOT NULL,
+    id_ts        NUMBER NOT NULL,
     task         VARCHAR2(225) NOT NULL,
     times        VARCHAR2(225) NOT NULL,
     results      VARCHAR2(225) NOT NULL,
@@ -46,18 +40,16 @@ CREATE TABLE timesheet (
     PRIMARY KEY ( id_ts ) ENABLE,
     FOREIGN KEY ( id_project )
         REFERENCES project ( id_project )
-        on delete CASCADE
+            ON DELETE CASCADE
     ENABLE,
     FOREIGN KEY ( id_staff )
         REFERENCES staff ( id_staff )
-        on delete CASCADE
+            ON DELETE CASCADE
     ENABLE
 );
 
 CREATE TABLE news (
-    id_new     NUMBER
-        GENERATED ALWAYS AS IDENTITY INCREMENT BY 1 START WITH 1
-    NOT NULL,
+    id_new     NUMBER NOT NULL,
     title      VARCHAR2(225) NOT NULL,
     image      VARCHAR2(225),
     dates      VARCHAR2(225) NOT NULL,
@@ -66,59 +58,51 @@ CREATE TABLE news (
     PRIMARY KEY ( id_new ) ENABLE,
     FOREIGN KEY ( id_staff )
         REFERENCES staff ( id_staff )
-        on delete CASCADE
+            ON DELETE CASCADE
     ENABLE
 );
 
 CREATE TABLE bugs (
-    id_bugs    NUMBER
-        GENERATED ALWAYS AS IDENTITY INCREMENT BY 1 START WITH 1
-    NOT NULL,
+    id_bugs    NUMBER NOT NULL,
     names      VARCHAR2(225) NOT NULL,
     id_staff   NUMBER NOT NULL,
     PRIMARY KEY ( id_bugs ) ENABLE,
     FOREIGN KEY ( id_staff )
         REFERENCES staff ( id_staff )
-        on delete CASCADE
+            ON DELETE CASCADE
     ENABLE
 );
 
 CREATE TABLE commentbugs (
-    id_cm      NUMBER
-        GENERATED ALWAYS AS IDENTITY INCREMENT BY 1 START WITH 1
-    NOT NULL,
+    id_cm      NUMBER NOT NULL,
     status     NUMBER(1, 0) NOT NULL,
     id_bugs    NUMBER NOT NULL,
     id_staff   NUMBER NOT NULL,
     PRIMARY KEY ( id_cm ) ENABLE,
     FOREIGN KEY ( id_bugs )
         REFERENCES bugs ( id_bugs )
-        on delete CASCADE
+            ON DELETE CASCADE
     ENABLE,
     FOREIGN KEY ( id_staff )
         REFERENCES staff ( id_staff )
-        on delete CASCADE
+            ON DELETE CASCADE
     ENABLE
 );
 
 CREATE TABLE request (
-    id_request     NUMBER
-        GENERATED ALWAYS AS IDENTITY INCREMENT BY 1 START WITH 1
-    NOT NULL,
+    id_request     NUMBER NOT NULL,
     request_type   NUMBER NOT NULL,
     status         NUMBER(1, 0) NOT NULL,
     id_staff       NUMBER NOT NULL,
     PRIMARY KEY ( id_request ) ENABLE,
     FOREIGN KEY ( id_staff )
         REFERENCES staff ( id_staff )
-        on delete CASCADE
-        enable
+            ON DELETE CASCADE
+    ENABLE
 );
 
 CREATE TABLE reports (
-    id_report          NUMBER
-        GENERATED ALWAYS AS IDENTITY INCREMENT BY 1 START WITH 1
-    NOT NULL,
+    id_report          NUMBER NOT NULL,
     id_project         NUMBER NOT NULL,
     id_ts              NUMBER NOT NULL,
     calendar_effort    VARCHAR2(225),
@@ -127,27 +111,79 @@ CREATE TABLE reports (
     PRIMARY KEY ( id_report ) ENABLE,
     FOREIGN KEY ( id_project )
         REFERENCES project ( id_project )
-        on delete CASCADE
+            ON DELETE CASCADE
     ENABLE,
     FOREIGN KEY ( id_ts )
         REFERENCES timesheet ( id_ts )
-        on delete CASCADE
+            ON DELETE CASCADE
     ENABLE
 );
 
 CREATE TABLE slide (
-    id_slide   NUMBER
-        GENERATED ALWAYS AS IDENTITY INCREMENT BY 1 START WITH 1
-    NOT NULL,
+    id_slide   NUMBER NOT NULL,
     image      VARCHAR2(225) NOT NULL,
     contentt   VARCHAR2(225),
     id_staff   NUMBER NOT NULL,
     PRIMARY KEY ( id_slide ) ENABLE,
     FOREIGN KEY ( id_staff )
         REFERENCES staff ( id_staff )
-        on delete CASCADE
+            ON DELETE CASCADE
     ENABLE
 );
+CREATE SEQUENCE report_seq
+ START WITH     1
+ INCREMENT BY   1
+ NOCACHE
+ NOCYCLE;
+
+CREATE SEQUENCE request_seq
+ START WITH     1
+ INCREMENT BY   1
+ NOCACHE
+ NOCYCLE;
+ 
+ CREATE SEQUENCE bugs_seq
+ START WITH     1
+ INCREMENT BY   1
+ NOCACHE
+ NOCYCLE;
+ 
+ CREATE SEQUENCE slide_seq
+ START WITH     1
+ INCREMENT BY   1
+ NOCACHE
+ NOCYCLE;
+ 
+ CREATE SEQUENCE staff_seq
+ START WITH     1
+ INCREMENT BY   1
+ NOCACHE
+ NOCYCLE;
+ 
+ CREATE SEQUENCE timesheet_seq
+ START WITH     1
+ INCREMENT BY   1
+ NOCACHE
+ NOCYCLE;
+ 
+ CREATE SEQUENCE project_seq
+ START WITH     1
+ INCREMENT BY   1
+ NOCACHE
+ NOCYCLE;
+ 
+ CREATE SEQUENCE news_seq
+ START WITH     1
+ INCREMENT BY   1
+ NOCACHE
+ NOCYCLE;
+ 
+ CREATE SEQUENCE commentbugs_seq
+ START WITH     1
+ INCREMENT BY   1
+ NOCACHE
+ NOCYCLE;
+
 --drop table slide;
 --drop table reports;
 --drop table request;

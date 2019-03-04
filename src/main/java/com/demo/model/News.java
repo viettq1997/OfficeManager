@@ -4,9 +4,12 @@ package com.demo.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
@@ -44,7 +47,8 @@ public class News implements java.io.Serializable {
 	}
 
 	@Id
-
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "news_seq")
+	@SequenceGenerator(name = "news_seq", sequenceName = "news_seq")
 	@Column(name = "ID_NEW", unique = true, nullable = false, precision = 22, scale = 0)
 	public int getIdNew() {
 		return this.idNew;

@@ -4,9 +4,12 @@ package com.demo.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
@@ -33,7 +36,8 @@ public class Commentbugs implements java.io.Serializable {
 	}
 
 	@Id
-
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "commentbugs_seq")
+	@SequenceGenerator(name = "commentbugs_seq", sequenceName = "commentbugs_seq")
 	@Column(name = "ID_CM", unique = true, nullable = false, precision = 22, scale = 0)
 	public int getIdCm() {
 		return this.idCm;
