@@ -45,6 +45,18 @@ public class News implements java.io.Serializable {
 		this.dates = dates;
 		this.contentt = contentt;
 	}
+	
+	
+	
+
+	public News( String contentt, String dates, String image, Staff staff,String title) {
+		super();
+		this.staff = staff;
+		this.title = title;
+		this.image = image;
+		this.dates = dates;
+		this.contentt = contentt;
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "news_seq")
